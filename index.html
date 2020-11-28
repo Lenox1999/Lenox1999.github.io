@@ -3,16 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Countdown Timer</title>
+    <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <title>Home - Welcome!</title>
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
+    <script src="https://unpkg.com/vue@next"></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="main">
-      <h2 class="minutes">0 min</h2>
-      <h2 class="seconds">0 s</h2>
-      <button class="start_button">Start</button>
-      <input type="text" name="time_input" class="time_input" />
+    <div class="main_container">
+      <header class="main_header">
+        <div class="main_header__container">
+          <hr class="line" />
+          <ul class="header_list">
+            <li @click.prevent="shown='home'">home</li>
+            <li @click.prevent="shown='whoami'">whoami</li>
+            <li @click.prevent="shown ='projects'">projects</li>
+          </ul>
+        </div>
+      </header>
+      <main>
+        <div class="main">
+          <div v-if="shown=='home'">Welcome to my site</div>
+          <div v-if="shown=='whoami'">whoami</div>
+          <div v-if="shown=='projects'">projects</div>
+        </div>
+      </main>
     </div>
   </body>
 </html>
