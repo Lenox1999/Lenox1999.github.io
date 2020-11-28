@@ -7,18 +7,28 @@
     <title>Home - Welcome!</title>
     <link rel="stylesheet" href="style.css" />
     <script src="app.js" defer></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="main_header">
-      <div class="main_header__container">
-        <hr class="line" />
-        <ul class="header_list">
-          <li><a href="./">home</a></li>
-          <li><a href="./whoami">whoami</a></li>
-          <li><a href="./projects">projects</a></li>
-        </ul>
-      </div>
-    </header>
+    <div class="main_container">
+      <header class="main_header">
+        <div class="main_header__container">
+          <hr class="line" />
+          <ul class="header_list">
+            <li @click.prevent="shown='home'">home</li>
+            <li @click.prevent="shown='whoami'">whoami</li>
+            <li @click.prevent="shown ='projects'">projects</li>
+          </ul>
+        </div>
+      </header>
+      <main>
+        <div class="main">
+          <div v-if="shown=='home'">Welcome to my site</div>
+          <div v-if="shown=='whoami'">whoami</div>
+          <div v-if="shown=='projects'">projects</div>
+        </div>
+      </main>
+    </div>
   </body>
 </html>
