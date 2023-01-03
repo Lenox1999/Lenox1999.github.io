@@ -36,7 +36,7 @@ form.addEventListener("submit", (e) => {
   console.log(input.value);
   if (input.value.trim() == "") return;
   set(ref(db, "input/" + Date.now().toString()), {
-    input: input.value,
+    input: input.value.trim(),
   });
   input.value = "";
 });
