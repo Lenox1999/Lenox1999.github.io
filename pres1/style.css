@@ -5,7 +5,7 @@ body {
 
 #container {
   margin: auto;
-  width: 50%;
+  width: 70%;
   border: 3px solid green;
   border-radius: 10px;
   background-color: #0d083b;
@@ -67,6 +67,7 @@ p {
   justify-content: center;
 }
 
+/* mobile */
 @media (max-width: 560px) {
   h1 {
     font-size: 25px;
@@ -105,3 +106,4 @@ p {
     font-size: 15px;
   }
 }
+/* ----------------------------  */
