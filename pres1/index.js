@@ -1,11 +1,4 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-
-// If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js";
-
-// Add Firebase products that you want to use
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 import {
   getDatabase,
   ref,
@@ -37,17 +30,6 @@ const container = document.getElementById("container");
 
 let oldDataLoaded = false;
 
-// function makeid(length) {
-//   var result = "";
-//   var characters =
-//     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-//   var charactersLength = characters.length;
-//   for (var i = 0; i < length; i++) {
-//     result += characters.charAt(Math.floor(Math.random() * charactersLength));
-//   }
-//   return result;
-// }
-
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   // let id = makeid(5);
@@ -72,25 +54,42 @@ onValue(starCountRef, (snapshot) => {
   console.log(data);
   if (!oldDataLoaded) {
     for (const [key, value] of Object.entries(data)) {
-      var oNewP = document.createElement("p");
-      var oText = document.createTextNode(value.input);
-      oNewP.appendChild(oText);
+      createParagraph(value, null);
+      // let oNewP = document.createElement("p");
       // document.body.appendChild(oNewP);
-      container.appendChild(oNewP);
-      let img = document.createElement("img");
-      img.src = value.input;
-      let src = document.getElementById("header");
-      src.appendChild(img);
-      oldDataLoaded = true;
+      // let oText = document.createTextNode(value.input);
+      // oNewP.appendChild(oText);
+      // container.appendChild(oNewP);
+      // let img = document.createElement("img");
+      // img.src = value.input;
+      // let src = document.getElementById("header");
+      // src.appendChild(img);
     }
+    oldDataLoaded = true;
   } else {
     console.log(Object.keys(data).pop());
     let last = Object.keys(data).pop();
-    let oNewP = document.createElement("p");
+    createParagraph(data, last);
+    // let oNewP = document.createElement("p");
 
-    let text = document.createTextNode(data[last].input);
-    oNewP.appendChild(text);
-    // document.body.appendChild(oNewP);
-    container.appendChild(oNewP);
+    // let text = document.createTextNode(data[last].input);
+    // oNewP.appendChild(text);
+    // // document.body.appendChild(oNewP);
+    // container.appendChild(oNewP);
   }
 });
+
+const createParagraph = (data, lastElementTimeStamp) => {
+  let oNewP = document.createElement("p");
+  let text;
+
+  if (!oldDataLoaded) {
+    console.log(data);
+    text = document.createTextNode(data.input);
+  } else {
+    console.log("triggered");
+    text = document.createTextNode(data[lastElementTimeStamp].input);
+  }
+  oNewP.appendChild(text);
+  container.appendChild(oNewP);
+};
