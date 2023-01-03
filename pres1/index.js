@@ -34,6 +34,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   // let id = makeid(5);
   console.log(input.value);
+  if (input.value.trim() == "") return;
   set(ref(db, "input/" + Date.now().toString()), {
     input: input.value,
   });
@@ -47,9 +48,9 @@ const userInputData = () => {
     tello: "shello",
   });
 };
-const starCountRef = ref(db, "input");
+const dbRef = ref(db, "input");
 userInputData();
-onValue(starCountRef, (snapshot) => {
+onValue(dbRef, (snapshot) => {
   const data = snapshot.val();
   console.log(data);
   if (!oldDataLoaded) {
